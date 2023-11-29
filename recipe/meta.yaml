@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv
   number: 1
 
 requirements:
@@ -20,6 +20,7 @@ requirements:
     - python >=3.8
     - setuptools
     - setuptools-scm
+    - wheel
   run:
     - asdf >=2.12.1
     - python >=3.8
@@ -39,7 +40,11 @@ about:
   license_file: LICENSE
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/42309
+    reason: Dependency for asdf
   recipe-maintainers:
+    - ianaobi
     - jhunkeler
     - WilliamJamieson
     - braingram
